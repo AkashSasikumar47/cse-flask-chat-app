@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-import html
 
 app = Flask(__name__)
 
@@ -25,9 +24,6 @@ def send():
     if len(message) > 500:
         message = message[:500]
 
-    username = html.escape(username)
-    message = html.escape(message)
-
     users.add(username)
     messages.append({"username": username, "message": message})
 
@@ -43,4 +39,4 @@ def get_users():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

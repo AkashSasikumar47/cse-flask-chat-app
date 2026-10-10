@@ -1,29 +1,43 @@
-# Simple Chat Application
+# Flask Chat App
 
-A basic chat application built with Flask. Users can send messages that are visible to everyone.
+A simple shared chat room in Flask: anyone who opens the page can post, and everyone sees the same messages.
 
-## Installation
+> College mini-project · Computer Science and Engineering, SRMIST · Cloud Computing · December 2023
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/AkashSasikumar47/Simple-Chat-App-CC.git
-   cd Simple-Chat-App-CC
-   ```
+## Features
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+- One page with the message list and a form for your name and message
+- Names and messages are trimmed and length-limited (50 and 500 characters)
+- Keeps the last 100 messages
+- A small JSON endpoint lists everyone who has posted
 
-## Usage
+## Built with
 
-Run the Flask application:
+Python 3, Flask and Jinja templates.
+
+## Run it
+
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 python app.py
 ```
 
-Open your browser and visit http://127.0.0.1:5000/
+Open http://127.0.0.1:5000 in a browser.
+
+## How it works
+
+Messages live in memory, so they reset when the server restarts. `/send` takes the form post and redirects back to the page, and `/get_users` returns the list of names as JSON. Jinja escapes every name and message when the page is rendered, so posted HTML is shown as text.
+
+## Project structure
+
+```
+app.py                 Flask routes and the in-memory message list
+templates/index.html   the chat page
+requirements.txt       Flask
+```
 
 ## License
 
-This project is licensed under the MIT License.
+[MIT](LICENSE)
